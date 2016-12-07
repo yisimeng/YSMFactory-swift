@@ -18,6 +18,7 @@
 		EEDCBA4D1DF54D2200C9CB4F /* YSMPageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA4C1DF54D2200C9CB4F /* YSMPageContentView.swift */; };
 		EEDCBA4F1DF5500700C9CB4F /* YSMPageViewStye.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA4E1DF5500700C9CB4F /* YSMPageViewStye.swift */; };
 		EEDCBA511DF55ACE00C9CB4F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA501DF55ACE00C9CB4F /* UIView+Extension.swift */; };
+		EEFFA7EF1DF7E11500F831A1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EEFFA7EE1DF7E11500F831A1 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		EEDCBA4C1DF54D2200C9CB4F /* YSMPageContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMPageContentView.swift; sourceTree = "<group>"; };
 		EEDCBA4E1DF5500700C9CB4F /* YSMPageViewStye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMPageViewStye.swift; sourceTree = "<group>"; };
 		EEDCBA501DF55ACE00C9CB4F /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		EEFFA7EE1DF7E11500F831A1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 		EEDCBA231DF53ADF00C9CB4F = {
 			isa = PBXGroup;
 			children = (
+				EEFFA7EE1DF7E11500F831A1 /* README.md */,
 				EEDCBA2E1DF53ADF00C9CB4F /* YSMFactory-swift */,
 				EEDCBA2D1DF53ADF00C9CB4F /* Products */,
 			);
@@ -185,6 +188,7 @@
 				EEDCBA451DF53BD700C9CB4F /* UIColor+Extension.swift in Sources */,
 				EEDCBA491DF54CA800C9CB4F /* YSMPageView.swift in Sources */,
 				EEDCBA321DF53ADF00C9CB4F /* ViewController.swift in Sources */,
+				EEFFA7EF1DF7E11500F831A1 /* README.md in Sources */,
 				EEDCBA4F1DF5500700C9CB4F /* YSMPageViewStye.swift in Sources */,
 				EEDCBA301DF53ADF00C9CB4F /* AppDelegate.swift in Sources */,
 			);

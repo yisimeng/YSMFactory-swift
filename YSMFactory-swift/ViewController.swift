@@ -23,11 +23,8 @@ class ViewController: UIViewController {
             viewController.view.backgroundColor = UIColor.randomColor()
             childVCs.append(viewController)
         }
-        
         let style = YSMPageViewStye()
-        
         let pageView = YSMPageView(frame: pageViewFrame, titles: titles, viewControllers: childVCs, parentController: self, style: style)
-        
         view.addSubview(pageView)
         
     }
