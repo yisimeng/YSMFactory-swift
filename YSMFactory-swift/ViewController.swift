@@ -9,11 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
-        
         
         let pageViewFrame = CGRect(x: 0, y: kNavigationBarHeight, width: view.bounds.width, height: view.bounds.height-kNavigationBarHeight)
         let titles = ["第一","第二二第三","第五","第三第三","第五","第四第第五第五","第五","第六","第四第第五第五","第五","第六"]
@@ -29,4 +28,3 @@ class ViewController: UIViewController {
         
     }
 }
-

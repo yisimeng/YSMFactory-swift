@@ -53,6 +53,20 @@ var isContentScrollAnimated:Bool = false
 var isTitleFollowAnimated:Bool = true
 ```
 
+* YSMWaterFallFlowLayout :瀑布流布局  
+
+> 主要实现数据源方法
+
+```
+//数据源
+protocol YSMWaterFallLayoutDataSource : class{
+//外部使用，需传入瀑布流列数
+func numberOfRows(in layout:YSMFlowLayout) -> Int
+//设置item的高度 (猜测可以给UICollectionViewDataSource协议进行扩展，写到扩展中,遇到扩展协议的问题)
+func layout(_ layout:YSMFlowLayout, heightForRowAt indexPath: IndexPath) -> CGFloat
+}
+```
+
 
 
 
