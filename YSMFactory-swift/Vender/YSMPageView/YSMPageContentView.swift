@@ -13,9 +13,9 @@ private let kConllectionViewCellId = "kConllectionViewCellId"
 //只是使用自定义的代理方法，可以不遵守NSObjectProcotol
 protocol YSMPageContentViewDelegate : class {
     //content停止滚动，通知title偏移
-    func contentView(_ contentView:YSMPageContentView, _ targetIndex:Int)
+    func contentViewDidEndScroll(_ contentView:YSMPageContentView)
     //设置title的渐变
-    func contentView(_ contentView:YSMPageContentView, _ targetIndex:Int, _ progress:CGFloat)
+    func contentView(_ contentView:YSMPageContentView, from currentIndex:Int,scrollingTo targetIndex:Int, _ progress:CGFloat)
 }
 
 class YSMPageContentView: UIView {
@@ -26,12 +26,12 @@ class YSMPageContentView: UIView {
     
     weak var delegate : YSMPageContentViewDelegate?
     
-    fileprivate var currentOffsetX:CGFloat = 0
+    fileprivate var startOffsetX:CGFloat = 0
     
     //titleView和contentView互为代理，当点击titleView导致content偏移时，content又会通知代理titleView进行偏移
     //当点击title设置content偏移时，禁止content调用代理执行偏移，
     //监听到content将要滑动时，开启content调用代理执行偏移
-    fileprivate var isScrollForbid = false
+    fileprivate var isScrollForbidDelegate = false
     
     fileprivate lazy var collectionView :UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -96,15 +96,16 @@ extension YSMPageContentView:UICollectionViewDataSource{
     }
 }
 
-extension YSMPageContentView:YSMPageTitleViewDelegate{
-    func titleView(_ titleView: YSMPageTitleView, _ targetIndex: Int) {
-        //禁用调用titleView进行偏移
-        isScrollForbid = true
-        
-        //取到target的indexpath
-        let indexPath = IndexPath(row: targetIndex, section: 0)
-        //滚动到target的控制器
-        collectionView.scrollToItem(at: indexPath, at: .left, animated: style.isContentScrollAnimated)
+extension YSMPageContentView {
+    //修改当前页下标
+    func set(currentIndex: Int) {
+        //禁用调用代理进行偏移
+        isScrollForbidDelegate = true
+
+        //取到目标的索引
+        let targetIndexPath = IndexPath(item: currentIndex, section: 0)
+        //设置contentView滚动
+        collectionView.scrollToItem(at: targetIndexPath, at: .left, animated: style.isContentScrollAnimated)
     }
 }
 
@@ -112,79 +113,63 @@ extension YSMPageContentView:UICollectionViewDelegate{
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         //手动滑动contentView，需要调用titleView去执行操作
-        isScrollForbid = false
+        isScrollForbidDelegate = false
         //获取当前页的偏移量
-        currentOffsetX = scrollView.contentOffset.x
+        startOffsetX = scrollView.contentOffset.x
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        //判断获取的是否是当前的contentView
-        guard scrollView.isEqual(collectionView) else {
-            return
-        }
         if !decelerate {
-            contentDidEndScroll(scrollView)
+            delegate?.contentViewDidEndScroll(self)
         }
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        //停止减速后，设置titleView偏移
-        //判断获取的是否是当前的contentView
-        guard scrollView.isEqual(collectionView) else {
-            return
-        }
-        contentDidEndScroll(scrollView)
-    }
-    func contentDidEndScroll(_ scrollView:UIScrollView) {
-        guard !isScrollForbid else {
-            return
-        }
-        //计算当前视图的index
-        let targetIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width)
-        delegate?.contentView(self, targetIndex)
-        
-        currentOffsetX = scrollView.contentOffset.x
+        delegate?.contentViewDidEndScroll(self)
     }
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //判断获取的是否是当前的contentView
-        guard scrollView.isEqual(collectionView) else {
-            return
-        }
         //是否开启title跟随变化
-        guard style.isTitleFollowAnimated, !isScrollForbid else {
+        guard style.isTitleFollowAnimated, !isScrollForbidDelegate else {
             return
         }
         //判断偏移是否等于初始偏移
-        guard scrollView.contentOffset.x != currentOffsetX else {
+        guard scrollView.contentOffset.x != startOffsetX else {
             return
         }
-        //获取当前page的index
-        let currentIndex = Int(currentOffsetX / scrollView.bounds.width)
+        // 定义获取需要的数据
+        var progress : CGFloat = 0
+        var currentIndex : Int = 0
+        var targetIndex : Int = 0
         
-        //targetIndex
-        var targetIndex:Int
-        
-        //progress：移动的百分比
-        var progress:CGFloat
-        
-        //左滑。向左滑动，向上滑动，偏移量数值增加
-        if currentOffsetX < scrollView.contentOffset.x{
+        // 判断是左滑还是右滑
+        let currentOffsetX = scrollView.contentOffset.x
+        let scrollViewW = scrollView.bounds.width
+        // 左滑
+        if currentOffsetX > startOffsetX {
+            progress = currentOffsetX / scrollViewW - floor(currentOffsetX / scrollViewW)
+            // 计算currentIndex
+            currentIndex = Int(currentOffsetX / scrollViewW)
+            
             //左滑需要判断当前如果为最后一个page，title不需要滚动
             guard currentIndex != childVCs.count-1 else {
                 return
             }
             targetIndex = currentIndex+1
-        }else{
-            //相等在前面已经判断，所以为右滑
+        }else {
+            // 右滑
+            progress = 1 - (currentOffsetX / scrollViewW - floor(currentOffsetX / scrollViewW))
+            
+            // 取整原则，右滑会导致（currentOffsetX/scrollViewW）小于当前的index，所以是目标的下标
+            targetIndex = Int(currentOffsetX / scrollViewW)
+            
             //右滑需判断当前为第一个page，title不需要滚动
-            guard currentIndex != 0 else {
+            guard targetIndex > -1 else {
                 return
             }
-            targetIndex = currentIndex-1
+            currentIndex = targetIndex + 1
         }
-        //不管是向左还是向右，progress只记录相对于原来偏移的距离占ScrollView宽度的百分比
-        progress = abs(currentOffsetX-scrollView.contentOffset.x)/scrollView.bounds.width
-        delegate?.contentView(self, targetIndex, progress)
+
+        delegate?.contentView(self, from: currentIndex, scrollingTo: targetIndex, progress)
     }
     
 }

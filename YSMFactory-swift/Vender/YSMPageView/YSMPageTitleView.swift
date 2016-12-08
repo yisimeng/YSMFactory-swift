@@ -9,7 +9,7 @@
 import UIKit
 
 protocol YSMPageTitleViewDelegate : class {
-    func titleView(_ titleView:YSMPageTitleView, _ targetIndex:Int)
+    func titleView(_ titleView:YSMPageTitleView, didSelectIndex targetIndex:Int)
 }
 
 class YSMPageTitleView: UIView {
@@ -51,7 +51,7 @@ class YSMPageTitleView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }
 
 // MARK: - prepareUI
@@ -71,7 +71,6 @@ extension YSMPageTitleView{
             setupBottomLine()
         }
         
-        
         //自适应时 设置scrollView的contentSize为最后一个label的right+titleMargin的一半
         if style.isTitleAutoresize {
             scrollView.contentSize = CGSize(width: titleLabels.last!.frame.maxX + style.titleMargin * 0.5, height: bounds.height)
@@ -79,7 +78,6 @@ extension YSMPageTitleView{
         //设置默认选中
         let currentLabel = titleLabels[currentIndex]
         currentLabel.textColor = style.titleSelectColor
-        delegateNeedselect(currentIndex)
     }
     fileprivate func setupTitleLabels() {
         for (index,title) in titles.enumerated() {
@@ -137,86 +135,82 @@ extension YSMPageTitleView{
 // MARK: - action
 extension YSMPageTitleView{
     @objc fileprivate func titleLabelClick(_ tap:UITapGestureRecognizer){
-        let label = tap.view as! UILabel
-        selectTitleLabel(index: label.tag)
-        delegateNeedselect(label.tag)
-    }
-    
-    fileprivate func delegateNeedselect(_ index:Int){
-        delegate?.titleView(self, index)
-    }
-    
-    fileprivate func selectTitleLabel(index targetIndex:Int){
-        //判断点击的是当前的label直接返回
-        guard targetIndex != currentIndex else {
-            return
-        }
-        //取出现在和点击的label
-        let currentLabel = titleLabels[currentIndex]
-        let targetLabel = titleLabels[targetIndex]
-        //修改颜色
-        currentLabel.textColor = style.titleNormalColor
-        targetLabel.textColor = style.titleSelectColor
-        //切换当前的index
-        currentIndex = targetIndex
+        // 0.获取当前Label
+        guard let targetLabel = tap.view as? UILabel else { return }
         
-        //设置选中label居中
-        if style.isTitleAutoresize {
-            //当label居中时，ScrollView的左边界到屏幕左边的距离就是偏移量
-            var offsetX = targetLabel.center.x - bounds.width * 0.5
-            //当偏移小于0时，ScrollView的左边界会在原边界的右边
-            if offsetX < 0{
-                offsetX = 0
-            }
-            //当偏移量大于（scrollView.contentSize.width-scrollView.bounds.width）时，右边界会在原右边界的左边
-            if offsetX > scrollView.contentSize.width-scrollView.bounds.width {
-                offsetX = scrollView.contentSize.width-scrollView.bounds.width
-            }
-            scrollView.contentOffset = CGPoint(x: offsetX, y: 0)
-        }
+        // 1.如果是重复点击同一个Title,那么直接返回
+        if targetLabel.tag == currentIndex { return }
+        
+        // 2.获取之前的Label
+        let currentLabel = titleLabels[currentIndex]
+
+        //修改颜色
+        targetLabel.textColor = style.titleSelectColor
+        currentLabel.textColor = style.titleNormalColor
+        
+        //保存最新label的下标值
+        currentIndex = currentLabel.tag
+        
+        //通知代理滚动
+        delegate?.titleView(self, didSelectIndex: currentIndex)
+        
+        //调整label居中
+        adjustCurrentLabelCentered()
         
         //设置下划线跟随
         if style.isBottomLineShow {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.bottomLine.frame.origin.x = targetLabel.frame.minX
-                self.bottomLine.frame.size.width = targetLabel.frame.width
+            UIView.animate(withDuration: 0.15, animations: {
+                let x = targetLabel.frame.minX
+                let w = targetLabel.frame.width
+                self.bottomLine.frame = CGRect(x: x, y: self.bottomLine.frame.origin.y, width: w, height: self.bottomLine.frame.height)
             })
         }
-
-    }
-}
-
-extension YSMPageTitleView:YSMPageContentViewDelegate {
-    //内容已经滚动，需要改变currentIndex
-    func contentView(_ contentView: YSMPageContentView, _ targetIndex: Int) {
-        selectTitleLabel(index: targetIndex)
     }
     
-    func contentView(_ contentView: YSMPageContentView, _ targetIndex: Int, _ progress: CGFloat) {
-        //获取当前和target的label
-        let currentLabel = titleLabels[currentIndex]
+    func scrollingTitle(from sourceIndex:Int, to targetIndex:Int, with progress:CGFloat) {
+        //获取当前和目标label
+        let sourceLabel = titleLabels[sourceIndex]
         let targetLabel = titleLabels[targetIndex]
         
-        //设置文字颜色渐变
+        //设置文字渐变
         if style.isTitleColorCrossDissolve {
-            let delatColor = UIColor.getRGBDelta(style.titleSelectColor, style.titleNormalColor)
-            let normalColorCmps = style.titleSelectColor.getRGBComponents()
-            let selectColorCmps = style.titleNormalColor.getRGBComponents()
-            targetLabel.textColor = UIColor(r: selectColorCmps.r-delatColor.rDelta*progress, g: selectColorCmps.g-delatColor.gDelta*progress, b: selectColorCmps.b-delatColor.bDelta*progress, alpha: selectColorCmps.alpha-delatColor.aDelta*progress)
-            currentLabel.textColor = UIColor(r: normalColorCmps.r+delatColor.rDelta*progress, g: normalColorCmps.g+delatColor.gDelta*progress, b: normalColorCmps.b+delatColor.bDelta*progress, alpha: normalColorCmps.alpha+delatColor.aDelta*progress)
+            let delatColor = UIColor.getRGBDelta(style.titleNormalColor,style.titleSelectColor)
+            let normalColorCmps = style.titleNormalColor.getRGBComponents()
+            let selectColorCmps = style.titleSelectColor.getRGBComponents()
+            sourceLabel.textColor = UIColor(r: selectColorCmps.r-delatColor.rDelta*progress, g: selectColorCmps.g-delatColor.gDelta*progress, b: selectColorCmps.b-delatColor.bDelta*progress, alpha: selectColorCmps.alpha-delatColor.aDelta*progress)
+            targetLabel.textColor = UIColor(r: normalColorCmps.r+delatColor.rDelta*progress, g: normalColorCmps.g+delatColor.gDelta*progress, b: normalColorCmps.b+delatColor.bDelta*progress, alpha: normalColorCmps.alpha+delatColor.aDelta*progress)
         }
         
-        //下划线渐变
+        //切换当前的index
+        currentIndex = targetIndex
+        
+        let moveTotalX = targetLabel.frame.origin.x - sourceLabel.frame.origin.x
+        let moveTotalW = targetLabel.frame.width - sourceLabel.frame.width
+        //设置下划线偏移
         if style.isBottomLineShow {
-            //x坐标的差值
-            let diffX = targetLabel.frame.minX - currentLabel.frame.minX
-            //宽度的差值
-            let diffW = targetLabel.frame.width - currentLabel.frame.width
-            //变化后的x值
-            let targetX = currentLabel.frame.minX + diffX*progress
-            //变化后的宽度
-            let targetW = currentLabel.frame.width + diffW*progress
-            bottomLine.frame = CGRect(x: targetX, y: bottomLine.frame.minY, width: targetW, height: bottomLine.frame.height)
+            bottomLine.frame.size.width = sourceLabel.frame.width + moveTotalW * progress
+            bottomLine.frame.origin.x = sourceLabel.frame.origin.x + moveTotalX * progress
         }
     }
+    //调整label居中
+    func adjustCurrentLabelCentered() {
+        //设置选中label居中
+        guard style.isTitleAutoresize else {
+            return
+        }
+        let currentLabel = titleLabels[currentIndex]
+        //当label居中时，ScrollView的左边界到屏幕左边的距离就是偏移量
+        var offsetX = currentLabel.center.x - bounds.width * 0.5
+        //当偏移小于0时，ScrollView的左边界会在原边界的右边
+        if offsetX < 0{
+            offsetX = 0
+        }
+        //当偏移量大于（scrollView.contentSize.width-scrollView.bounds.width）时，右边界会在原右边界的左边
+        if offsetX > scrollView.contentSize.width-scrollView.bounds.width {
+            offsetX = scrollView.contentSize.width-scrollView.bounds.width
+        }
+        //设置偏移，如果不加动画的话，会明显有先向反方向移动的效果
+        self.scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+    }
 }
+

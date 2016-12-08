@@ -19,12 +19,14 @@ class YSMPageView: UIView {
         let titleViewFrame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.style.titleViewHeight)
         let titleView = YSMPageTitleView(frame: titleViewFrame, titles: self.titles, style:self.style)
         titleView.backgroundColor = UIColor.randomColor()
+        titleView.delegate = self
         return titleView
     }()
     
     fileprivate lazy var contentView :YSMPageContentView = {
         let contentViewFrame = CGRect(x: 0, y: self.style.titleViewHeight, width: self.bounds.width, height: self.bounds.height - self.style.titleViewHeight)
         let contentView = YSMPageContentView(frame: contentViewFrame, childVCs: self.childVCs, parentVC: self.parentVC, style:self.style)
+        contentView.delegate = self
         return contentView
     }()
     
@@ -53,13 +55,21 @@ extension YSMPageView{
     fileprivate func prepareUI() {
         addSubview(titleView)
         addSubview(contentView)
-        
-        //设置contentView为titleview的代理，当点击title时，contentView跟随滚动
-        titleView.delegate = contentView
-        //设置titleView为contentView的代理，当手动滑动content时，title滚动
-        contentView.delegate = titleView
     }
 }
 
-
+extension YSMPageView:YSMPageTitleViewDelegate,YSMPageContentViewDelegate{
+    //YSMPageTitleViewDelegate
+    func titleView(_ titleView: YSMPageTitleView, didSelectIndex targetIndex: Int) {
+        contentView.set(currentIndex: targetIndex)
+    }
+    
+    //YSMPageContentViewDelegate
+    func contentViewDidEndScroll(_ contentView:YSMPageContentView){
+        titleView.adjustCurrentLabelCentered()
+    }
+    func contentView(_ contentView:YSMPageContentView, from currentIndex:Int,scrollingTo targetIndex:Int, _ progress:CGFloat){
+        titleView.scrollingTitle(from: currentIndex, to: targetIndex, with: progress)
+    }
+}
 

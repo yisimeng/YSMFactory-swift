@@ -30,9 +30,9 @@ class YSMPageViewStye {
     //title的字体大小
     var titleFontSize:CGFloat = 14
     //title选中的颜色(RGB)
-    var titleSelectColor:UIColor = UIColor(hex: 0xff0000, alpha: 1)
+    var titleSelectColor:UIColor = UIColor(hex: 0x000000, alpha: 1)
     //title的未选中颜色(RGB)
-    var titleNormalColor:UIColor = UIColor(hex: 0x000000, alpha: 1)
+    var titleNormalColor:UIColor = UIColor(hex: 0xff0000, alpha: 1)
     //title颜色是否渐变
     var isTitleColorCrossDissolve = true
     //title是否为自适应
@@ -52,4 +52,7 @@ class YSMPageViewStye {
     
     //titleView跟随contentView变化
     var isTitleFollowAnimated:Bool = true
+    
+    //PageView的初始默认下标
+    var originalIndex:Int = 0
 }
