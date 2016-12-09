@@ -118,14 +118,8 @@ extension YSMPageContentView:UICollectionViewDelegate{
         startOffsetX = scrollView.contentOffset.x
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            delegate?.contentViewDidEndScroll(self)
-        }
-    }
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         delegate?.contentViewDidEndScroll(self)
     }
-    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //是否开启title跟随变化

@@ -149,7 +149,7 @@ extension YSMPageTitleView{
         currentLabel.textColor = style.titleNormalColor
         
         //保存最新label的下标值
-        currentIndex = currentLabel.tag
+        currentIndex = targetLabel.tag
         
         //通知代理滚动
         delegate?.titleView(self, didSelectIndex: currentIndex)
@@ -188,8 +188,10 @@ extension YSMPageTitleView{
         let moveTotalW = targetLabel.frame.width - sourceLabel.frame.width
         //设置下划线偏移
         if style.isBottomLineShow {
-            bottomLine.frame.size.width = sourceLabel.frame.width + moveTotalW * progress
-            bottomLine.frame.origin.x = sourceLabel.frame.origin.x + moveTotalX * progress
+            UIView.animate(withDuration: 0.2, animations: { 
+                self.bottomLine.frame.size.width = sourceLabel.frame.width + moveTotalW * progress
+                self.bottomLine.frame.origin.x = sourceLabel.frame.origin.x + moveTotalX * progress
+            })
         }
     }
     //调整label居中
@@ -209,7 +211,7 @@ extension YSMPageTitleView{
         if offsetX > scrollView.contentSize.width-scrollView.bounds.width {
             offsetX = scrollView.contentSize.width-scrollView.bounds.width
         }
-        //设置偏移，如果不加动画的话，会明显有先向反方向移动的效果
+        //设置偏移
         self.scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
     }
 }
