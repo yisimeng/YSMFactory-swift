@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE0F5CC41DFA60DA00C297F0 /* YSMAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F5CC31DFA60DA00C297F0 /* YSMAdViewController.swift */; };
+		EE0F5CC61DFA645100C297F0 /* YSMAdLaunchStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F5CC51DFA645100C297F0 /* YSMAdLaunchStyle.swift */; };
 		EED984381DF9434C005485E2 /* YSMWaterFallFlowReadMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED984371DF9434C005485E2 /* YSMWaterFallFlowReadMe.swift */; };
 		EEDCBA301DF53ADF00C9CB4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA2F1DF53ADF00C9CB4F /* AppDelegate.swift */; };
 		EEDCBA321DF53ADF00C9CB4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA311DF53ADF00C9CB4F /* ViewController.swift */; };
@@ -19,11 +21,12 @@
 		EEDCBA4D1DF54D2200C9CB4F /* YSMPageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA4C1DF54D2200C9CB4F /* YSMPageContentView.swift */; };
 		EEDCBA4F1DF5500700C9CB4F /* YSMPageViewStye.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA4E1DF5500700C9CB4F /* YSMPageViewStye.swift */; };
 		EEDCBA511DF55ACE00C9CB4F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA501DF55ACE00C9CB4F /* UIView+Extension.swift */; };
-		EEFFA7EF1DF7E11500F831A1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EEFFA7EE1DF7E11500F831A1 /* README.md */; };
 		EEFFA7F21DF7F1D500F831A1 /* YSMFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFA7F11DF7F1D500F831A1 /* YSMFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE0F5CC31DFA60DA00C297F0 /* YSMAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMAdViewController.swift; sourceTree = "<group>"; };
+		EE0F5CC51DFA645100C297F0 /* YSMAdLaunchStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMAdLaunchStyle.swift; sourceTree = "<group>"; };
 		EED984371DF9434C005485E2 /* YSMWaterFallFlowReadMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMWaterFallFlowReadMe.swift; sourceTree = "<group>"; };
 		EEDCBA2C1DF53ADF00C9CB4F /* YSMFactory-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YSMFactory-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEDCBA2F1DF53ADF00C9CB4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +41,6 @@
 		EEDCBA4C1DF54D2200C9CB4F /* YSMPageContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMPageContentView.swift; sourceTree = "<group>"; };
 		EEDCBA4E1DF5500700C9CB4F /* YSMPageViewStye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMPageViewStye.swift; sourceTree = "<group>"; };
 		EEDCBA501DF55ACE00C9CB4F /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		EEFFA7EE1DF7E11500F831A1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EEFFA7F11DF7F1D500F831A1 /* YSMFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,10 +55,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE0F5CC21DFA608100C297F0 /* YSMAdLaunch */ = {
+			isa = PBXGroup;
+			children = (
+				EE0F5CC51DFA645100C297F0 /* YSMAdLaunchStyle.swift */,
+				EE0F5CC31DFA60DA00C297F0 /* YSMAdViewController.swift */,
+			);
+			path = YSMAdLaunch;
+			sourceTree = "<group>";
+		};
 		EEDCBA231DF53ADF00C9CB4F = {
 			isa = PBXGroup;
 			children = (
-				EEFFA7EE1DF7E11500F831A1 /* README.md */,
 				EEDCBA2E1DF53ADF00C9CB4F /* YSMFactory-swift */,
 				EEDCBA2D1DF53ADF00C9CB4F /* Products */,
 			);
@@ -97,6 +107,7 @@
 		EEDCBA461DF54C9000C9CB4F /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				EE0F5CC21DFA608100C297F0 /* YSMAdLaunch */,
 				EEFFA7F01DF7F18200F831A1 /* YSMWaterFallFlowLayout */,
 				EEDCBA471DF54C9000C9CB4F /* YSMPageView */,
 			);
@@ -197,6 +208,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EED984381DF9434C005485E2 /* YSMWaterFallFlowReadMe.swift in Sources */,
+				EE0F5CC41DFA60DA00C297F0 /* YSMAdViewController.swift in Sources */,
+				EE0F5CC61DFA645100C297F0 /* YSMAdLaunchStyle.swift in Sources */,
 				EEDCBA4B1DF54CB600C9CB4F /* YSMPageTitleView.swift in Sources */,
 				EEDCBA4D1DF54D2200C9CB4F /* YSMPageContentView.swift in Sources */,
 				EEDCBA511DF55ACE00C9CB4F /* UIView+Extension.swift in Sources */,
@@ -204,7 +217,6 @@
 				EEDCBA491DF54CA800C9CB4F /* YSMPageView.swift in Sources */,
 				EEFFA7F21DF7F1D500F831A1 /* YSMFlowLayout.swift in Sources */,
 				EEDCBA321DF53ADF00C9CB4F /* ViewController.swift in Sources */,
-				EEFFA7EF1DF7E11500F831A1 /* README.md in Sources */,
 				EEDCBA4F1DF5500700C9CB4F /* YSMPageViewStye.swift in Sources */,
 				EEDCBA301DF53ADF00C9CB4F /* AppDelegate.swift in Sources */,
 			);
@@ -327,6 +339,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PK59D9X298;
 				INFOPLIST_FILE = "YSMFactory-swift/Info.plist";
@@ -341,6 +354,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PK59D9X298;
 				INFOPLIST_FILE = "YSMFactory-swift/Info.plist";
