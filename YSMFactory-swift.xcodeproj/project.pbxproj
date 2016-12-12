@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		EE0F5CC41DFA60DA00C297F0 /* YSMAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F5CC31DFA60DA00C297F0 /* YSMAdViewController.swift */; };
 		EE0F5CC61DFA645100C297F0 /* YSMAdLaunchStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F5CC51DFA645100C297F0 /* YSMAdLaunchStyle.swift */; };
+		EE0F5CD01DFAD11000C297F0 /* YSMClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F5CCF1DFAD11000C297F0 /* YSMClass.swift */; };
+		EE0F5CD21DFAD11F00C297F0 /* YSMProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F5CD11DFAD11F00C297F0 /* YSMProtocol.swift */; };
 		EED984381DF9434C005485E2 /* YSMWaterFallFlowReadMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED984371DF9434C005485E2 /* YSMWaterFallFlowReadMe.swift */; };
 		EEDCBA301DF53ADF00C9CB4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA2F1DF53ADF00C9CB4F /* AppDelegate.swift */; };
 		EEDCBA321DF53ADF00C9CB4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA311DF53ADF00C9CB4F /* ViewController.swift */; };
@@ -27,6 +29,8 @@
 /* Begin PBXFileReference section */
 		EE0F5CC31DFA60DA00C297F0 /* YSMAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMAdViewController.swift; sourceTree = "<group>"; };
 		EE0F5CC51DFA645100C297F0 /* YSMAdLaunchStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMAdLaunchStyle.swift; sourceTree = "<group>"; };
+		EE0F5CCF1DFAD11000C297F0 /* YSMClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMClass.swift; sourceTree = "<group>"; };
+		EE0F5CD11DFAD11F00C297F0 /* YSMProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMProtocol.swift; sourceTree = "<group>"; };
 		EED984371DF9434C005485E2 /* YSMWaterFallFlowReadMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMWaterFallFlowReadMe.swift; sourceTree = "<group>"; };
 		EEDCBA2C1DF53ADF00C9CB4F /* YSMFactory-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YSMFactory-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEDCBA2F1DF53ADF00C9CB4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,23 @@
 			path = YSMAdLaunch;
 			sourceTree = "<group>";
 		};
+		EE0F5CC71DFACEEC00C297F0 /* Issure */ = {
+			isa = PBXGroup;
+			children = (
+				EE0F5CC81DFACF5800C297F0 /* ProtocolExtension */,
+			);
+			path = Issure;
+			sourceTree = "<group>";
+		};
+		EE0F5CC81DFACF5800C297F0 /* ProtocolExtension */ = {
+			isa = PBXGroup;
+			children = (
+				EE0F5CCF1DFAD11000C297F0 /* YSMClass.swift */,
+				EE0F5CD11DFAD11F00C297F0 /* YSMProtocol.swift */,
+			);
+			path = ProtocolExtension;
+			sourceTree = "<group>";
+		};
 		EEDCBA231DF53ADF00C9CB4F = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +106,7 @@
 			children = (
 				EEDCBA2F1DF53ADF00C9CB4F /* AppDelegate.swift */,
 				EEDCBA311DF53ADF00C9CB4F /* ViewController.swift */,
+				EE0F5CC71DFACEEC00C297F0 /* Issure */,
 				EEDCBA461DF54C9000C9CB4F /* Vender */,
 				EEDCBA431DF53BD700C9CB4F /* Extension */,
 				EEDCBA331DF53ADF00C9CB4F /* Main.storyboard */,
@@ -214,11 +236,13 @@
 				EEDCBA4D1DF54D2200C9CB4F /* YSMPageContentView.swift in Sources */,
 				EEDCBA511DF55ACE00C9CB4F /* UIView+Extension.swift in Sources */,
 				EEDCBA451DF53BD700C9CB4F /* UIColor+Extension.swift in Sources */,
+				EE0F5CD01DFAD11000C297F0 /* YSMClass.swift in Sources */,
 				EEDCBA491DF54CA800C9CB4F /* YSMPageView.swift in Sources */,
 				EEFFA7F21DF7F1D500F831A1 /* YSMFlowLayout.swift in Sources */,
 				EEDCBA321DF53ADF00C9CB4F /* ViewController.swift in Sources */,
 				EEDCBA4F1DF5500700C9CB4F /* YSMPageViewStye.swift in Sources */,
 				EEDCBA301DF53ADF00C9CB4F /* AppDelegate.swift in Sources */,
+				EE0F5CD21DFAD11F00C297F0 /* YSMProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

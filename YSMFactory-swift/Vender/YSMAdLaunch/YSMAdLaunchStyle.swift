@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+/*快速集成代码
+    self.window?.rootViewController = YSMAdViewController(showStyle:YSMAdLaunchStyle(), finished:({
+        self.window?.rootViewController = ViewController()
+    }))
+ */
+
 enum SkipButtonType {
     case none, time, skip, timeSkip
 }
