@@ -65,8 +65,8 @@ extension YSMPageView:YSMPageTitleViewDelegate,YSMPageContentViewDelegate{
     }
     
     //YSMPageContentViewDelegate
-    func contentViewDidEndScroll(_ contentView:YSMPageContentView){
-        titleView.adjustCurrentLabelCentered()
+    func contentViewDidEndScroll(_ contentView: YSMPageContentView, _ targetIndex: Int) {
+        titleView.adjustCurrentLabelCentered(targetIndex)
     }
     func contentView(_ contentView:YSMPageContentView, from currentIndex:Int,scrollingTo targetIndex:Int, _ progress:CGFloat){
         titleView.scrollingTitle(from: currentIndex, to: targetIndex, with: progress)

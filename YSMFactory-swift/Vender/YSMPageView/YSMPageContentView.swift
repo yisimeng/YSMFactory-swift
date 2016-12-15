@@ -13,7 +13,7 @@ private let kConllectionViewCellId = "kConllectionViewCellId"
 //只是使用自定义的代理方法，可以不遵守NSObjectProcotol
 protocol YSMPageContentViewDelegate : class {
     //content停止滚动，通知title偏移
-    func contentViewDidEndScroll(_ contentView:YSMPageContentView)
+    func contentViewDidEndScroll(_ contentView:YSMPageContentView, _ targetIndex :Int)
     //设置title的渐变
     func contentView(_ contentView:YSMPageContentView, from currentIndex:Int,scrollingTo targetIndex:Int, _ progress:CGFloat)
 }
@@ -27,6 +27,8 @@ class YSMPageContentView: UIView {
     weak var delegate : YSMPageContentViewDelegate?
     
     fileprivate var startOffsetX:CGFloat = 0
+    
+    fileprivate var endIndex :Int = 0
     
     //titleView和contentView互为代理，当点击titleView导致content偏移时，content又会通知代理titleView进行偏移
     //当点击title设置content偏移时，禁止content调用代理执行偏移，
@@ -118,12 +120,14 @@ extension YSMPageContentView:UICollectionViewDelegate{
         startOffsetX = scrollView.contentOffset.x
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        delegate?.contentViewDidEndScroll(self)
+        delegate?.contentViewDidEndScroll(self,endIndex)
     }
     
+    
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        var point = &targetContentOffset
-        print("\(point)")
+        let targetIndex = Int(targetContentOffset.pointee.x/scrollView.frame.width)
+        endIndex = targetIndex
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

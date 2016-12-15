@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         automaticallyAdjustsScrollViewInsets = false
         
         let pageViewFrame = CGRect(x: 0, y: kNavigationBarHeight, width: view.bounds.width, height: view.bounds.height-kNavigationBarHeight)
-        let titles = ["第一","第二二第三","第五","第三第三","第五","第四第第五第五","第五","第六","第四第第五第五","第五","第六"]
+        let titles = ["第一","第二二第二","第三","第四第四","第五","第六第第六第六","第七","第八","第九第第九第九","第十","第十一"]
         var childVCs = [UIViewController]()
         for _ in 0..<titles.count {
             let viewController = UIViewController()

@@ -155,7 +155,7 @@ extension YSMPageTitleView{
         delegate?.titleView(self, didSelectIndex: currentIndex)
         
         //调整label居中
-        adjustCurrentLabelCentered()
+        adjustCurrentLabelCentered(currentIndex)
         
         //设置下划线跟随
         if style.isBottomLineShow {
@@ -181,9 +181,6 @@ extension YSMPageTitleView{
             targetLabel.textColor = UIColor(r: normalColorCmps.r+delatColor.rDelta*progress, g: normalColorCmps.g+delatColor.gDelta*progress, b: normalColorCmps.b+delatColor.bDelta*progress, alpha: normalColorCmps.alpha+delatColor.aDelta*progress)
         }
         
-        //切换当前的index
-        currentIndex = targetIndex
-        
         let moveTotalX = targetLabel.frame.origin.x - sourceLabel.frame.origin.x
         let moveTotalW = targetLabel.frame.width - sourceLabel.frame.width
         //设置下划线偏移
@@ -195,12 +192,12 @@ extension YSMPageTitleView{
         }
     }
     //调整label居中
-    func adjustCurrentLabelCentered() {
+    func adjustCurrentLabelCentered(_ targetIndex:Int) {
         //设置选中label居中
         guard style.isTitleAutoresize else {
             return
         }
-        let currentLabel = titleLabels[currentIndex]
+        let currentLabel = titleLabels[targetIndex]
         //当label居中时，ScrollView的左边界到屏幕左边的距离就是偏移量
         var offsetX = currentLabel.center.x - bounds.width * 0.5
         //当偏移小于0时，ScrollView的左边界会在原边界的右边
@@ -213,6 +210,8 @@ extension YSMPageTitleView{
         }
         //设置偏移
         self.scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+        //保存当前下标
+        currentIndex = targetIndex
     }
 }
 
