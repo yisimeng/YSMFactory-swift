@@ -121,6 +121,11 @@ extension YSMPageContentView:UICollectionViewDelegate{
         delegate?.contentViewDidEndScroll(self)
     }
     
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        var point = &targetContentOffset
+        print("\(point)")
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //是否开启title跟随变化
         guard style.isTitleFollowAnimated, !isScrollForbidDelegate else {

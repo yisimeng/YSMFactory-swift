@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70E0AA2D2C4D2AEBF95EF815 /* Pods_YSMFactory_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A40152C53512183CB1C30E /* Pods_YSMFactory_swift.framework */; };
 		EE0F5CC41DFA60DA00C297F0 /* YSMAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F5CC31DFA60DA00C297F0 /* YSMAdViewController.swift */; };
 		EE0F5CC61DFA645100C297F0 /* YSMAdLaunchStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F5CC51DFA645100C297F0 /* YSMAdLaunchStyle.swift */; };
 		EE0F5CD01DFAD11000C297F0 /* YSMClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F5CCF1DFAD11000C297F0 /* YSMClass.swift */; };
 		EE0F5CD21DFAD11F00C297F0 /* YSMProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F5CD11DFAD11F00C297F0 /* YSMProtocol.swift */; };
+		EE22FCEA1E00F5400034165F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE22FCE91E00F5400034165F /* Person.swift */; };
+		EE22FCEC1E00F5590034165F /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE22FCEB1E00F5590034165F /* Animal.swift */; };
 		EED984381DF9434C005485E2 /* YSMWaterFallFlowReadMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED984371DF9434C005485E2 /* YSMWaterFallFlowReadMe.swift */; };
 		EEDCBA301DF53ADF00C9CB4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA2F1DF53ADF00C9CB4F /* AppDelegate.swift */; };
 		EEDCBA321DF53ADF00C9CB4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCBA311DF53ADF00C9CB4F /* ViewController.swift */; };
@@ -27,10 +30,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		72A40152C53512183CB1C30E /* Pods_YSMFactory_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YSMFactory_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E54093A60A83EF430D6A4852 /* Pods-YSMFactory-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSMFactory-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSMFactory-swift/Pods-YSMFactory-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		EE0F5CC31DFA60DA00C297F0 /* YSMAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMAdViewController.swift; sourceTree = "<group>"; };
 		EE0F5CC51DFA645100C297F0 /* YSMAdLaunchStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMAdLaunchStyle.swift; sourceTree = "<group>"; };
 		EE0F5CCF1DFAD11000C297F0 /* YSMClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMClass.swift; sourceTree = "<group>"; };
 		EE0F5CD11DFAD11F00C297F0 /* YSMProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMProtocol.swift; sourceTree = "<group>"; };
+		EE22FCE91E00F5400034165F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		EE22FCEB1E00F5590034165F /* Animal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
 		EED984371DF9434C005485E2 /* YSMWaterFallFlowReadMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMWaterFallFlowReadMe.swift; sourceTree = "<group>"; };
 		EEDCBA2C1DF53ADF00C9CB4F /* YSMFactory-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YSMFactory-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEDCBA2F1DF53ADF00C9CB4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +53,7 @@
 		EEDCBA4E1DF5500700C9CB4F /* YSMPageViewStye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMPageViewStye.swift; sourceTree = "<group>"; };
 		EEDCBA501DF55ACE00C9CB4F /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		EEFFA7F11DF7F1D500F831A1 /* YSMFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSMFlowLayout.swift; sourceTree = "<group>"; };
+		F90F0CCF81FCEDD8BB01C339 /* Pods-YSMFactory-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSMFactory-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-YSMFactory-swift/Pods-YSMFactory-swift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,12 +61,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70E0AA2D2C4D2AEBF95EF815 /* Pods_YSMFactory_swift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		749E2CB18E85E823F5FE70DB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E54093A60A83EF430D6A4852 /* Pods-YSMFactory-swift.debug.xcconfig */,
+				F90F0CCF81FCEDD8BB01C339 /* Pods-YSMFactory-swift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		94979E782DD1BA5E3E78D688 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72A40152C53512183CB1C30E /* Pods_YSMFactory_swift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EE0F5CC21DFA608100C297F0 /* YSMAdLaunch */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +116,8 @@
 			children = (
 				EEDCBA2E1DF53ADF00C9CB4F /* YSMFactory-swift */,
 				EEDCBA2D1DF53ADF00C9CB4F /* Products */,
+				749E2CB18E85E823F5FE70DB /* Pods */,
+				94979E782DD1BA5E3E78D688 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +134,8 @@
 			children = (
 				EEDCBA2F1DF53ADF00C9CB4F /* AppDelegate.swift */,
 				EEDCBA311DF53ADF00C9CB4F /* ViewController.swift */,
+				EE22FCE91E00F5400034165F /* Person.swift */,
+				EE22FCEB1E00F5590034165F /* Animal.swift */,
 				EE0F5CC71DFACEEC00C297F0 /* Issure */,
 				EEDCBA461DF54C9000C9CB4F /* Vender */,
 				EEDCBA431DF53BD700C9CB4F /* Extension */,
@@ -163,9 +193,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EEDCBA3E1DF53ADF00C9CB4F /* Build configuration list for PBXNativeTarget "YSMFactory-swift" */;
 			buildPhases = (
+				AFCD6FC428CD49FDEA3CA409 /* [CP] Check Pods Manifest.lock */,
 				EEDCBA281DF53ADF00C9CB4F /* Sources */,
 				EEDCBA291DF53ADF00C9CB4F /* Frameworks */,
 				EEDCBA2A1DF53ADF00C9CB4F /* Resources */,
+				3B0191E785BFA99A3F7C682A /* [CP] Embed Pods Frameworks */,
+				DD125782F5F36F96C95A8BC3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -224,11 +257,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3B0191E785BFA99A3F7C682A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YSMFactory-swift/Pods-YSMFactory-swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AFCD6FC428CD49FDEA3CA409 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DD125782F5F36F96C95A8BC3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YSMFactory-swift/Pods-YSMFactory-swift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EEDCBA281DF53ADF00C9CB4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE22FCEA1E00F5400034165F /* Person.swift in Sources */,
 				EED984381DF9434C005485E2 /* YSMWaterFallFlowReadMe.swift in Sources */,
 				EE0F5CC41DFA60DA00C297F0 /* YSMAdViewController.swift in Sources */,
 				EE0F5CC61DFA645100C297F0 /* YSMAdLaunchStyle.swift in Sources */,
@@ -237,6 +319,7 @@
 				EEDCBA511DF55ACE00C9CB4F /* UIView+Extension.swift in Sources */,
 				EEDCBA451DF53BD700C9CB4F /* UIColor+Extension.swift in Sources */,
 				EE0F5CD01DFAD11000C297F0 /* YSMClass.swift in Sources */,
+				EE22FCEC1E00F5590034165F /* Animal.swift in Sources */,
 				EEDCBA491DF54CA800C9CB4F /* YSMPageView.swift in Sources */,
 				EEFFA7F21DF7F1D500F831A1 /* YSMFlowLayout.swift in Sources */,
 				EEDCBA321DF53ADF00C9CB4F /* ViewController.swift in Sources */,
@@ -361,6 +444,7 @@
 		};
 		EEDCBA3F1DF53ADF00C9CB4F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E54093A60A83EF430D6A4852 /* Pods-YSMFactory-swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -376,6 +460,7 @@
 		};
 		EEDCBA401DF53ADF00C9CB4F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F90F0CCF81FCEDD8BB01C339 /* Pods-YSMFactory-swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
