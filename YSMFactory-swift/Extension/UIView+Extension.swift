@@ -12,6 +12,17 @@ let kNavigationBarHeight:CGFloat = 64.0
 
 extension UIView{
     
+    
+    /// 添加触摸手势
+    ///
+    /// - Parameters:
+    ///   - target: <#target description#>
+    ///   - action: <#action description#>
+    func addTarget(target: Any?, action: Selector) {
+        let tap = UITapGestureRecognizer(target: target, action: action)
+        addGestureRecognizer(tap)
+    }
+    
     /// 移除所有子视图
     func removeAllSubviews() {
         for subview in self.subviews {

@@ -16,7 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
+       /*
+        self.window?.rootViewController = YSMAdViewController(showAd: "https://cl.ly/3i3M1n0x0v3r/adImage@2x.png", showStyle: { (style) in
+            
+        }, selected: { 
+            
+        }, finished: { 
+            
+        })
+        */
         return true
     }
 
