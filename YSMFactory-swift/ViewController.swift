@@ -8,7 +8,9 @@
 
 import UIKit
 import AVFoundation
-
+import OpenGLES
+import GLKit
+import GPUImage
 
 class ViewController: UIViewController{
     //捕捉会话
@@ -19,8 +21,22 @@ class ViewController: UIViewController{
     //movie输出
     let movieOutput = AVCaptureMovieFileOutput()
     
+    //设置openGL上下文
+    let glContext:EAGLContext = EAGLContext(api: .openGLES3)
+    
+    var glView :GLKView!
+    var ciContext :CIContext!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        glView = GLKView(frame: view.bounds, context: glContext)
+        glView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
+        glView.frame = view.bounds
+        ciContext = CIContext(eaglContext: glContext)
+        view.insertSubview(glView, at: 0)
+        
     }
     
     
@@ -43,13 +59,18 @@ class ViewController: UIViewController{
         setupAudioOutput(with: session!)
         
         //设置预览视图
-        setupPreviewLayer(with: session!)
+        //setupPreviewLayer(with: session!)
+        
+        let stillCameraOutput = AVCaptureStillImageOutput()
+        if session!.canAddOutput(stillCameraOutput){
+            session?.addOutput(stillCameraOutput)
+        }
         
         //开始捕捉
         session?.startRunning()
         
         //设置文件输出
-        setupFileOutput(with: session!)
+        //setupFileOutput(with: session!)
     }
     
     @IBAction func rotate(_ sender: Any) {
@@ -92,9 +113,9 @@ class ViewController: UIViewController{
         session?.removeInput(currentVideoInput)
         session?.addInput(newVideoInput)
         //继续写入
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/video.mp4"
-        let fileUrl = URL(fileURLWithPath: path)
-        movieOutput.startRecording(toOutputFileURL: fileUrl, recordingDelegate: self)
+        //let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/video.mp4"
+        //let fileUrl = URL(fileURLWithPath: path)
+        //movieOutput.startRecording(toOutputFileURL: fileUrl, recordingDelegate: self)
         session?.commitConfiguration()
         
     }
@@ -196,7 +217,23 @@ extension ViewController {
 
 extension ViewController:AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureAudioDataOutputSampleBufferDelegate,AVCaptureFileOutputRecordingDelegate{
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        
+        if (captureOutput as? AVCaptureVideoDataOutput) != nil {
+            //print("采集视频数据:\(captureOutput)")
+            
+            guard let imageSampleBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+            let ciImage = CIImage(cvImageBuffer: imageSampleBuffer)
+            guard let image = addFilter(to: ciImage) else { return }
+            if glContext != EAGLContext.current(){
+                EAGLContext.setCurrent(glContext)
+            }
+            glView.bindDrawable()
+            let rect = CGRect(x: 0, y: 0, width: glView.bounds.width*2, height: glView.bounds.height*2)
+            ciContext.draw(image, in: rect, from: image.extent)
+            glView.display()
+            
+        }else {
+            //print("采集音频数据")
+        }
     }
     
     //写入文件代理
@@ -205,6 +242,16 @@ extension ViewController:AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureA
     }
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         print("停止写入")
+    }
+}
+
+extension ViewController{
+    func addFilter(to image:CIImage) -> CIImage? {
+//        let edgework = CIBoxBlur.filterWithNamed()
+//        edgework.inputImage = image
+//        edgework.inputRadius = 10.0
+//        return edgework.outputImage
+        return image
     }
 }
 

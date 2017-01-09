@@ -10,17 +10,26 @@ import UIKit
 
 class TempViewController: YSMBaseViewController {
     
+    
+    /// hehe
     @IBOutlet weak var imageView: UIImageView!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let atask = delay(5.0) {
+            print("呵呵")
+        }
+        
+        let t = DispatchTime.now()+2
+        DispatchQueue.main.asyncAfter(deadline: t) {
+            cancel(atask)
+        }
+        
     }
-    
-    
 }
+
+
 
 
 

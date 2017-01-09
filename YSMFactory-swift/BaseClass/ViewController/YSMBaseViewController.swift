@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import YSMCategory
 class YSMBaseViewController: UIViewController,NibLoadable {
 
     override func viewDidLoad() {

@@ -1,0 +1,6 @@
+framework module YSMCategory {
+  umbrella header "YSMCategory-umbrella.h"
+
+  export *
+  module * { export * }
+}
