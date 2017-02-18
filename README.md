@@ -1,6 +1,5 @@
 # YSMFactory-swift
-swift练习代码和轮子的集中地，慢慢的会把写的swift代码都贴过来(顺带着学习下markdown)。   
-### 轮子
+
 * YSMPageView:多视图控制器管理。  
 
 ![YSMPageView](https://cl.ly/iNNK/Screen%20Recording%202016-12-07%20at%2002.59%20%E4%B8%8B%E5%8D%88.gif)  
